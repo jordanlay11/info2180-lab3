@@ -19,6 +19,13 @@ document.addEventListener('DOMContentLoaded', () => {
             currentPlayer = currentPlayer === 'X' ? 'O' : 'X';
             status.textContent = `Player ${currentPlayer}'s turn.`;
         });
-    });
 
+        sq.addEventListener('mouseenter', () => {
+            sq.classList.add('hover');
+        });
+        sq.addEventListener('mouseleave', () => {
+            sq.classList.remove('hover');
+        });
+    });
 });
+
