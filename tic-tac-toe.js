@@ -16,6 +16,13 @@ document.addEventListener('DOMContentLoaded', () => {
             sq.textContent = currentPlayer;
             sq.classList.add(currentPlayer);
 
+            const winner = checkWinner();
+            if (winner) {
+                status.textContent = `Congratulations! ${winner} is the Winner!`;
+                status.classList.add('you-won');
+                return;
+            }
+
             currentPlayer = currentPlayer === 'X' ? 'O' : 'X';
             status.textContent = `Player ${currentPlayer}'s turn.`;
         });
@@ -27,5 +34,25 @@ document.addEventListener('DOMContentLoaded', () => {
             sq.classList.remove('hover');
         });
     });
+
+    const winningCombos = [
+        [0,1,2],
+        [3,4,5],
+        [6,7,8],
+        [0,3,6],
+        [1,4,7],
+        [2,5,8],
+        [0,4,8],
+        [2,4,6]
+    ];
+
+    function checkWinner() {
+        for (const [a, b, c] of winningCombos) {
+            if (board[a] && board[a] === board[b] && board[a] === board[c]) {
+                return board[a];
+            }
+        }
+        return null;
+    }
 });
 
