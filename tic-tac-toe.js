@@ -7,11 +7,15 @@ document.addEventListener('DOMContentLoaded', () => {
     const status = document.getElementById('status');
     const squares = Array.from(document.querySelectorAll('#board div'));
 
-    let board = Array(9).fill(null); // track state: 'X', 'O' or null
+    let board = Array(9).fill(null); 
     let currentPlayer = 'X';
 
     squares.forEach((sq, idx) => {
         sq.addEventListener('click', () => {
+
+            if (board[idx] || checkWinner()) {
+                return; 
+            }
             board[idx] = currentPlayer;
             sq.textContent = currentPlayer;
             sq.classList.add(currentPlayer);
