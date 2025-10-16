@@ -54,5 +54,18 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         return null;
     }
+
+    const newGameBtn = document.querySelector('.controls .btn');
+    function resetGame() {
+        board.fill(null);
+        squares.forEach(sq => {
+            sq.textContent = '';
+            sq.classList.remove('X', 'O');
+        });
+        currentPlayer = 'X';
+        status.textContent = 'Move your mouse over a square and click to play an X or an O.';
+        status.classList.remove('you-won');
+    }
+    newGameBtn.addEventListener('click', resetGame);
 });
 
